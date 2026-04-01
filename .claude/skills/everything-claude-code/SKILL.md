@@ -1,442 +1,216 @@
----
-name: everything-claude-code-conventions
-description: Development conventions and patterns for everything-claude-code. JavaScript project with conventional commits.
----
+```markdown
+# everything-claude-code Development Patterns
 
-# Everything Claude Code Conventions
-
-> Generated from [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) on 2026-03-20
+> Auto-generated skill from repository analysis
 
 ## Overview
 
-This skill teaches Claude the development patterns and conventions used in everything-claude-code.
-
-## Tech Stack
-
-- **Primary Language**: JavaScript
-- **Architecture**: hybrid module organization
-- **Test Location**: separate
-
-## When to Use This Skill
-
-Activate this skill when:
-- Making changes to this repository
-- Adding new features following established patterns
-- Writing tests that match project conventions
-- Creating commits with proper message format
-
-## Commit Conventions
-
-Follow these commit message conventions based on 500 analyzed commits.
-
-### Commit Style: Conventional Commits
-
-### Prefixes Used
-
-- `fix`
-- `test`
-- `feat`
-- `docs`
-
-### Message Guidelines
-
-- Average message length: ~65 characters
-- Keep first line concise and descriptive
-- Use imperative mood ("Add feature" not "Added feature")
-
-
-*Commit message example*
-
-```text
-feat(rules): add C# language support
-```
-
-*Commit message example*
-
-```text
-chore(deps-dev): bump flatted (#675)
-```
-
-*Commit message example*
-
-```text
-fix: auto-detect ECC root from plugin cache when CLAUDE_PLUGIN_ROOT is unset (#547) (#691)
-```
-
-*Commit message example*
-
-```text
-docs: add Antigravity setup and usage guide (#552)
-```
-
-*Commit message example*
-
-```text
-merge: PR #529 — feat(skills): add documentation-lookup, bun-runtime, nextjs-turbopack; feat(agents): add rust-reviewer
-```
-
-*Commit message example*
-
-```text
-Revert "Add Kiro IDE support (.kiro/) (#548)"
-```
-
-*Commit message example*
-
-```text
-Add Kiro IDE support (.kiro/) (#548)
-```
-
-*Commit message example*
-
-```text
-feat: add block-no-verify hook for Claude Code and Cursor (#649)
-```
-
-## Architecture
-
-### Project Structure: Single Package
-
-This project uses **hybrid** module organization.
-
-### Configuration Files
-
-- `.github/workflows/ci.yml`
-- `.github/workflows/maintenance.yml`
-- `.github/workflows/monthly-metrics.yml`
-- `.github/workflows/release.yml`
-- `.github/workflows/reusable-release.yml`
-- `.github/workflows/reusable-test.yml`
-- `.github/workflows/reusable-validate.yml`
-- `.opencode/package.json`
-- `.opencode/tsconfig.json`
-- `.prettierrc`
-- `eslint.config.js`
-- `package.json`
-
-### Guidelines
-
-- This project uses a hybrid organization
-- Follow existing patterns when adding new code
-
-## Code Style
-
-### Language: JavaScript
-
-### Naming Conventions
-
-| Element | Convention |
-|---------|------------|
-| Files | camelCase |
-| Functions | camelCase |
-| Classes | PascalCase |
-| Constants | SCREAMING_SNAKE_CASE |
-
-### Import Style: Relative Imports
-
-### Export Style: Mixed Style
-
-
-*Preferred import style*
-
-```typescript
-// Use relative imports
-import { Button } from '../components/Button'
-import { useAuth } from './hooks/useAuth'
-```
-
-## Testing
-
-### Test Framework
-
-No specific test framework detected — use the repository's existing test patterns.
-
-### File Pattern: `*.test.js`
-
-### Test Types
-
-- **Unit tests**: Test individual functions and components in isolation
-- **Integration tests**: Test interactions between multiple components/services
-
-### Coverage
-
-This project has coverage reporting configured. Aim for 80%+ coverage.
-
-
-## Error Handling
-
-### Error Handling Style: Try-Catch Blocks
-
-
-*Standard error handling pattern*
-
-```typescript
-try {
-  const result = await riskyOperation()
-  return result
-} catch (error) {
-  console.error('Operation failed:', error)
-  throw new Error('User-friendly message')
-}
-```
-
-## Common Workflows
-
-These workflows were detected from analyzing commit patterns.
-
-### Database Migration
-
-Database schema changes with migration files
-
-**Frequency**: ~2 times per month
-
-**Steps**:
-1. Create migration file
-2. Update schema definitions
-3. Generate/update types
-
-**Files typically involved**:
-- `**/schema.*`
-- `migrations/*`
-
-**Example commit sequence**:
-```
-feat: implement --with/--without selective install flags (#679)
-fix: sync catalog counts with filesystem (27 agents, 113 skills, 58 commands) (#693)
-feat(rules): add Rust language rules (rebased #660) (#686)
-```
-
-### Feature Development
-
-Standard feature implementation workflow
-
-**Frequency**: ~22 times per month
-
-**Steps**:
-1. Add feature implementation
-2. Add tests for feature
-3. Update documentation
-
-**Files typically involved**:
-- `manifests/*`
-- `schemas/*`
-- `**/*.test.*`
-- `**/api/**`
-
-**Example commit sequence**:
-```
-feat(skills): add documentation-lookup, bun-runtime, nextjs-turbopack; feat(agents): add rust-reviewer
-docs(skills): align documentation-lookup with CONTRIBUTING template; add cross-harness (Codex/Cursor) skill copies
-fix: address PR review — skill template (When to use, How it works, Examples), bun.lock, next build note, rust-reviewer CI note, doc-lookup privacy/uncertainty
-```
-
-### Add Language Rules
-
-Adds a new programming language to the rules system, including coding style, hooks, patterns, security, and testing guidelines.
-
-**Frequency**: ~2 times per month
-
-**Steps**:
-1. Create a new directory under rules/{language}/
-2. Add coding-style.md, hooks.md, patterns.md, security.md, and testing.md files with language-specific content
-3. Optionally reference or link to related skills
-
-**Files typically involved**:
-- `rules/*/coding-style.md`
-- `rules/*/hooks.md`
-- `rules/*/patterns.md`
-- `rules/*/security.md`
-- `rules/*/testing.md`
-
-**Example commit sequence**:
-```
-Create a new directory under rules/{language}/
-Add coding-style.md, hooks.md, patterns.md, security.md, and testing.md files with language-specific content
-Optionally reference or link to related skills
-```
-
-### Add New Skill
-
-Adds a new skill to the system, documenting its workflow, triggers, and usage, often with supporting scripts.
-
-**Frequency**: ~4 times per month
-
-**Steps**:
-1. Create a new directory under skills/{skill-name}/
-2. Add SKILL.md with documentation (When to Use, How It Works, Examples, etc.)
-3. Optionally add scripts or supporting files under skills/{skill-name}/scripts/
-4. Address review feedback and iterate on documentation
-
-**Files typically involved**:
-- `skills/*/SKILL.md`
-- `skills/*/scripts/*.sh`
-- `skills/*/scripts/*.js`
-
-**Example commit sequence**:
-```
-Create a new directory under skills/{skill-name}/
-Add SKILL.md with documentation (When to Use, How It Works, Examples, etc.)
-Optionally add scripts or supporting files under skills/{skill-name}/scripts/
-Address review feedback and iterate on documentation
-```
-
-### Add New Agent
-
-Adds a new agent to the system for code review, build resolution, or other automated tasks.
-
-**Frequency**: ~2 times per month
-
-**Steps**:
-1. Create a new agent markdown file under agents/{agent-name}.md
-2. Register the agent in AGENTS.md
-3. Optionally update README.md and docs/COMMAND-AGENT-MAP.md
-
-**Files typically involved**:
-- `agents/*.md`
-- `AGENTS.md`
-- `README.md`
-- `docs/COMMAND-AGENT-MAP.md`
-
-**Example commit sequence**:
-```
-Create a new agent markdown file under agents/{agent-name}.md
-Register the agent in AGENTS.md
-Optionally update README.md and docs/COMMAND-AGENT-MAP.md
-```
-
-### Add New Command
-
-Adds a new command to the system, often paired with a backing skill.
-
-**Frequency**: ~1 times per month
-
-**Steps**:
-1. Create a new markdown file under commands/{command-name}.md
-2. Optionally add or update a backing skill under skills/{skill-name}/SKILL.md
-
-**Files typically involved**:
-- `commands/*.md`
-- `skills/*/SKILL.md`
-
-**Example commit sequence**:
-```
-Create a new markdown file under commands/{command-name}.md
-Optionally add or update a backing skill under skills/{skill-name}/SKILL.md
-```
-
-### Sync Catalog Counts
-
-Synchronizes the documented counts of agents, skills, and commands in AGENTS.md and README.md with the actual repository state.
-
-**Frequency**: ~3 times per month
-
-**Steps**:
-1. Update agent, skill, and command counts in AGENTS.md
-2. Update the same counts in README.md (quick-start, comparison table, etc.)
-3. Optionally update other documentation files
-
-**Files typically involved**:
-- `AGENTS.md`
-- `README.md`
-
-**Example commit sequence**:
-```
-Update agent, skill, and command counts in AGENTS.md
-Update the same counts in README.md (quick-start, comparison table, etc.)
-Optionally update other documentation files
-```
-
-### Add Cross Harness Skill Copies
-
-Adds skill copies for different agent harnesses (e.g., Codex, Cursor, Antigravity) to ensure compatibility across platforms.
-
-**Frequency**: ~2 times per month
-
-**Steps**:
-1. Copy or adapt SKILL.md to .agents/skills/{skill}/SKILL.md and/or .cursor/skills/{skill}/SKILL.md
-2. Optionally add harness-specific openai.yaml or config files
-3. Address review feedback to align with CONTRIBUTING template
-
-**Files typically involved**:
-- `.agents/skills/*/SKILL.md`
-- `.cursor/skills/*/SKILL.md`
-- `.agents/skills/*/agents/openai.yaml`
-
-**Example commit sequence**:
-```
-Copy or adapt SKILL.md to .agents/skills/{skill}/SKILL.md and/or .cursor/skills/{skill}/SKILL.md
-Optionally add harness-specific openai.yaml or config files
-Address review feedback to align with CONTRIBUTING template
-```
-
-### Add Or Update Hook
-
-Adds or updates git or bash hooks to enforce workflow, quality, or security policies.
-
-**Frequency**: ~1 times per month
-
-**Steps**:
-1. Add or update hook scripts in hooks/ or scripts/hooks/
-2. Register the hook in hooks/hooks.json or similar config
-3. Optionally add or update tests in tests/hooks/
-
-**Files typically involved**:
-- `hooks/*.hook`
-- `hooks/hooks.json`
-- `scripts/hooks/*.js`
-- `tests/hooks/*.test.js`
-- `.cursor/hooks.json`
-
-**Example commit sequence**:
-```
-Add or update hook scripts in hooks/ or scripts/hooks/
-Register the hook in hooks/hooks.json or similar config
-Optionally add or update tests in tests/hooks/
-```
-
-### Address Review Feedback
-
-Addresses code review feedback by updating documentation, scripts, or configuration for clarity, correctness, or convention alignment.
-
-**Frequency**: ~4 times per month
-
-**Steps**:
-1. Edit SKILL.md, agent, or command files to address reviewer comments
-2. Update examples, headings, or configuration as requested
-3. Iterate until all review feedback is resolved
-
-**Files typically involved**:
-- `skills/*/SKILL.md`
-- `agents/*.md`
-- `commands/*.md`
-- `.agents/skills/*/SKILL.md`
-- `.cursor/skills/*/SKILL.md`
-
-**Example commit sequence**:
-```
-Edit SKILL.md, agent, or command files to address reviewer comments
-Update examples, headings, or configuration as requested
-Iterate until all review feedback is resolved
-```
-
-
-## Best Practices
-
-Based on analysis of the codebase, follow these practices:
-
-### Do
-
-- Use conventional commit format (feat:, fix:, etc.)
-- Follow *.test.js naming pattern
-- Use camelCase for file names
-- Prefer mixed exports
-
-### Don't
-
-- Don't write vague commit messages
-- Don't skip tests for new features
-- Don't deviate from established patterns without discussion
+This skill teaches you how to contribute effectively to the `everything-claude-code` JavaScript codebase. You'll learn the project's coding conventions, commit patterns, and the step-by-step workflows for adding features, skills, agents, install targets, commands, hooks, and documentation. This guide also covers testing patterns and provides quick-reference commands for common development tasks.
 
 ---
 
-*This skill was auto-generated by [ECC Tools](https://ecc.tools). Review and customize as needed for your team.*
+## Coding Conventions
+
+**File Naming**
+- Use `camelCase` for JavaScript files and scripts.
+  - Example: `installTarget.js`, `sessionManager.js`
+- Markdown documentation is named descriptively, e.g., `SKILL.md`, `AGENTS.md`.
+
+**Import Style**
+- Use relative imports.
+  ```js
+  // Good
+  const utils = require('./utils');
+  // Not used
+  // const utils = require('utils');
+  ```
+
+**Export Style**
+- Mixed: both CommonJS (`module.exports`) and ES6 (`export`) styles may be present.
+  ```js
+  // CommonJS
+  module.exports = function doSomething() { ... };
+
+  // ES6
+  export function doSomethingElse() { ... }
+  ```
+
+**Commit Messages**
+- Use conventional prefixes: `fix:`, `feat:`, `docs:`, `chore:`
+- Average commit message length: ~58 characters.
+  ```
+  feat: add new agent registration to manifest
+  fix: correct install script path resolution
+  docs: update troubleshooting guide for ECC
+  ```
+
+---
+
+## Workflows
+
+### Add New Skill or Agent
+**Trigger:** When introducing a new skill or agent for ECC or related harnesses  
+**Command:** `/add-skill`
+
+1. Create a new `SKILL.md` (for skills) or `.md` file (for agents) in `skills/` or `agents/`.
+2. Add supporting files as needed (e.g., scripts, prompts).
+3. Update `manifests/install-modules.json` to register the new skill/agent.
+4. Update `AGENTS.md` and/or `README.md` to document the addition.
+5. Optionally, add or update tests for the new skill/agent.
+
+**Example:**
+```bash
+# Add a new skill
+mkdir skills/myNewSkill
+touch skills/myNewSkill/SKILL.md
+# Register in manifest
+vim manifests/install-modules.json
+# Update documentation
+vim AGENTS.md
+```
+
+---
+
+### Add or Update Install Target
+**Trigger:** When supporting a new install target or updating an existing one  
+**Command:** `/add-install-target`
+
+1. Create or update install scripts (`install.js`, `install.sh`, etc.) in the appropriate directory.
+2. Update schemas (e.g., `ecc-install-config.schema.json`) as needed.
+3. Register the target in `manifests/install-modules.json`.
+4. Update or create logic in `scripts/lib/install-targets/*.js`.
+5. Update tests in `tests/lib/install-targets.test.js`.
+6. Update documentation (`README.md`).
+
+**Example:**
+```bash
+# Add a new install target script
+touch scripts/lib/install-targets/myIDE.js
+# Register in manifest and schema
+vim manifests/install-modules.json
+vim schemas/ecc-install-config.schema.json
+# Add test
+vim tests/lib/install-targets.test.js
+```
+
+---
+
+### Add or Update Command
+**Trigger:** When introducing or improving a workflow command  
+**Command:** `/add-command`
+
+1. Create or update command `.md` files in `commands/`.
+2. Add or update supporting scripts/orchestrators as needed.
+3. Update documentation or references.
+4. Address review feedback and iterate.
+
+**Example:**
+```bash
+# Add a new command documentation
+touch commands/review.md
+# Add supporting script
+touch scripts/review.js
+```
+
+---
+
+### Dependency Update via Dependabot
+**Trigger:** When a dependency update is available or required  
+**Command:** `/update-dependency`
+
+1. Update dependency versions in `package.json`, `yarn.lock`, or workflow YAML.
+2. Update lockfiles as needed.
+3. Commit with a message indicating the dependency and version.
+4. Optionally update `.github/dependabot.yml`.
+
+**Example:**
+```bash
+npm install some-package@latest
+git commit -am "chore: bump some-package to 2.3.4"
+```
+
+---
+
+### Refactor or Enhance Hook Logic
+**Trigger:** When fixing, optimizing, or extending hook behavior  
+**Command:** `/update-hook`
+
+1. Edit or create `scripts/hooks/*.js` or `.sh` files.
+2. Update `hooks/hooks.json` to register/configure the hook.
+3. Add or update tests in `tests/hooks/` or `tests/scripts/`.
+4. Iterate based on review feedback.
+
+**Example:**
+```bash
+vim scripts/hooks/sessionManager.js
+vim hooks/hooks.json
+vim tests/hooks/sessionManager.test.js
+```
+
+---
+
+### Feature Addition with Tests and Docs
+**Trigger:** When developing a new feature or significant enhancement  
+**Command:** `/add-feature`
+
+1. Implement the feature in relevant source files (`scripts/`, `.opencode/`, `skills/`).
+2. Add or update test files for coverage.
+3. Update documentation (`README.md`, `AGENTS.md`, or `docs/`).
+4. Update configuration or manifest files if needed.
+
+**Example:**
+```bash
+vim scripts/newFeature.js
+vim tests/newFeature.test.js
+vim README.md
+```
+
+---
+
+### Documentation Update
+**Trigger:** When clarifying, adding, or updating documentation  
+**Command:** `/update-docs`
+
+1. Edit or create markdown files in `docs/` or top-level context files.
+2. Update `WORKING-CONTEXT.md`, `TROUBLESHOOTING.md`, or related docs.
+3. Commit with a `docs:` prefix.
+
+**Example:**
+```bash
+vim docs/architecture.md
+git commit -am "docs: expand architecture section"
+```
+
+---
+
+## Testing Patterns
+
+- Test files use the pattern `*.test.js`.
+- Testing framework is not explicitly specified; likely uses a standard Node.js test runner (e.g., Jest, Mocha).
+- Place tests alongside the code they cover, e.g., `tests/lib/install-targets.test.js`, `tests/hooks/*.js`.
+- Example test file structure:
+  ```js
+  // tests/lib/install-targets.test.js
+  const installTarget = require('../../scripts/lib/install-targets/myIDE');
+
+  describe('installTarget', () => {
+    it('should install correctly', () => {
+      // test logic here
+    });
+  });
+  ```
+
+---
+
+## Commands
+
+| Command            | Purpose                                                      |
+|--------------------|--------------------------------------------------------------|
+| /add-skill         | Add a new skill or agent, register, and document it          |
+| /add-install-target| Add or update an install target and related scripts/tests     |
+| /add-command       | Add or update a workflow command and supporting scripts      |
+| /update-dependency | Update dependencies and lockfiles                            |
+| /update-hook       | Refactor or enhance hook logic and configuration             |
+| /add-feature       | Add a new feature with tests and documentation               |
+| /update-docs       | Add or improve documentation and context files               |
+```
