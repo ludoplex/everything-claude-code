@@ -201,6 +201,7 @@
         "skills/continuous-learning-v2",
         "skills/e2e-testing",
         "skills/eval-harness",
+        "skills/excel-championship-methods",
         "skills/iterative-retrieval",
         "skills/plankton-code-quality",
         "skills/project-guidelines-example",
@@ -259,7 +260,8 @@
       "paths": [
         "skills/claude-api",
         "skills/deep-research",
-        "skills/exa-search"
+        "skills/exa-search",
+        "skills/seek-like-fravia"
       ],
       "targets": [
         "claude",
